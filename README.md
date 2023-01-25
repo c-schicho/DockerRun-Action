@@ -1,2 +1,3 @@
-# E2E-Action
-This repository contains the code to run cypress end-to-end tests.
+# DockerRun-Action
+
+This is an action to run a docker image in a github action workflow.
