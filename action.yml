@@ -1,0 +1,27 @@
+name: 'DockerRun-Action'
+description: 'Run a docker container in a github action workflow'
+inputs:
+  image:
+    description: 'Docker image'
+    required: true
+  registry:
+    description: 'Container registry'
+    required: false
+  username:
+    description: 'Registry username'
+    required: false
+  password:
+    description: 'Registry password'
+    required: false
+  options:
+    description: 'Docker options'
+    required: false
+  run:
+    description: 'Run command in container'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
