@@ -23,20 +23,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: Run privately owned image
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Run Image
-      uses: c-schicho/DockerRun-Action@v1
-      with:
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        registry: ghcr.io
-        image: image:latest
-        options: -p 80:80
-        run: echo "hello world"
+  docker:
+    name: Run privately owned image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run Image
+        uses: c-schicho/DockerRun-Action@v1
+        with:
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          registry: ghcr.io
+          image: image:latest
+          options: -p 80:80
+          run: echo "hello world"
 ```
 
 An action to run a docker imaged built by a previous step could look like the following:
@@ -46,17 +47,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: Run image built by previous step
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Build docker image
-      ...
-    - name: Run Image
-      uses: c-schicho/DockerRun-Action@v1
-      with:
-        image: image:latest
-        options: -p 80:80
-        run: echo "hello world"
+  docker:
+    name: Run image built by previous step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Build docker image
+        ...
+      - name: Run Image
+        uses: c-schicho/DockerRun-Action@v1
+        with:
+          image: image:latest
+          options: -p 80:80
+          run: echo "hello world"
 ```
